@@ -11,8 +11,8 @@
 
 - [x] Node.js는 20.17.0 버전에서 동작한다.
 - [ ] 기본적으로 JavaScript Style Guide를 원칙으로 한다.
-  - [ ] prettier 설정을 추가한다.
-  - [ ] eslint 설정을 추가한다.
+  - [x] prettier 설정을 추가한다.
+  - [x] eslint 설정을 추가한다.
 
 ## 구현할 기능 목록
 
