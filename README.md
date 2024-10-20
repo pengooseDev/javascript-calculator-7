@@ -21,7 +21,7 @@
 
 ## 추가할 환경 설정
 
-- [ ] Node.js는 20.17.0 버전에서 동작한다.
+- [x] Node.js는 20.17.0 버전에서 동작한다.
 - [ ] 기본적으로 JavaScript Style Guide를 원칙으로 한다.
   - [ ] prettier, eslint를 설정 추가.
 
