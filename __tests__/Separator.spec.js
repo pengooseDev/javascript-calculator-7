@@ -67,6 +67,38 @@ describe('Separator', () => {
     expect(separators).toHaveLength(3);
   });
 
+  describe('split', () => {
+    it('문자열을 주어진 구분자로 나누어야 한다.', () => {
+      const separator = new Separator([',', ':']);
+      const splitedInput = separator.split('1,2:3');
+
+      expect(splitedInput).toEqual(['1', ',', '2', ':', '3']);
+    });
+
+    it('문자열을 주어진 커스텀 구분자로 나누어야 한다.', () => {
+      const separator = new Separator([',', ':']);
+      const input = '1//custom\\n2//custom\\n3,4,5:6:7';
+      separator.extract(input);
+      const splitedInput = separator.split(input);
+
+      expect(splitedInput).toEqual([
+        '1',
+        'custom',
+        '2',
+        'custom',
+        '3',
+        ',',
+        '4',
+        ',',
+        '5',
+        ':',
+        '6',
+        ':',
+        '7',
+      ]);
+    });
+  });
+
   describe('예외처리', () => {
     it('구분자가 존재하지 않을 경우, 예외처리 한다.', () => {
       const DEFAULT_SEPARATORS = [',', ':'];
