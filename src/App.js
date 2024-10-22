@@ -14,6 +14,7 @@ class App {
     this.#separator.extract(userInput);
     const splitedInput = this.#separator.split(userInput);
     const parsedInput = this.#parseNumbers(splitedInput);
+    this.#validateNumbers(parsedInput);
   }
 
   async #readUserInput(message) {
@@ -33,6 +34,21 @@ class App {
 
       return number;
     });
+  }
+
+  #validateNumbers(array) {
+    const hasNumber = array.some((value) => typeof value === 'number');
+    if (!hasNumber) {
+      throw new Error('[ERROR] 숫자가 포함되어 있지 않습니다.');
+    }
+
+    const isNumberOrSeparator = array.every(
+      (value) => typeof value === 'number' || this.#separator.contain(value),
+    );
+
+    if (!isNumberOrSeparator) {
+      throw new Error('[ERROR] 숫자와 구분자가 아닌 값이 포함되어 있습니다.');
+    }
   }
 }
 
