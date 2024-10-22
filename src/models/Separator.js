@@ -14,9 +14,16 @@ export class Separator {
 
     for (const match of customSeparatorMatches) {
       const customSeparator = match[1];
+
       if (customSeparator.length === 0) {
         throw new Error('[ERROR] 커스텀 구분자가 비어있습니다.');
       }
+
+      const isNumber = !Number.isNaN(Number(customSeparator));
+      if (isNumber) {
+        throw new Error('[ERROR] 커스텀 구분자로 숫자를 입력할 수 없습니다.');
+      }
+
       this.#separators.add(customSeparator);
     }
 
