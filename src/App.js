@@ -15,6 +15,8 @@ class App {
     const splitedInput = this.#separator.split(userInput);
     const parsedInput = this.#parseNumbers(splitedInput);
     this.#validateNumbers(parsedInput);
+
+    const result = this.#add(parsedInput);
   }
 
   async #readUserInput(message) {
@@ -49,6 +51,20 @@ class App {
     if (!isNumberOrSeparator) {
       throw new Error('[ERROR] 숫자와 구분자가 아닌 값이 포함되어 있습니다.');
     }
+  }
+
+  #add(array) {
+    return array.reduce((acc, current, index) => {
+      if (index % 2 === 0) {
+        if (!this.#separator.contain(current)) {
+          throw new Error('[ERROR] 구분자가 아닌 값이 포함되어 있습니다.');
+        }
+
+        return acc;
+      }
+
+      return acc + current;
+    });
   }
 }
 
