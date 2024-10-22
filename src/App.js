@@ -12,6 +12,7 @@ class App {
   async run() {
     const userInput = await this.#readUserInput(MESSAGE.READ_USER_INPUT);
     const separators = this.#separator.extract(userInput);
+    const splitedInput = this.#separator.split(userInput);
   }
 
   async #readUserInput(message) {
