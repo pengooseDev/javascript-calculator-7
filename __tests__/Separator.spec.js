@@ -46,7 +46,17 @@ describe('Separator', () => {
     it('커스텀 구분자가 비어있을 경우, 예외처리 한다.', () => {
       const separator = new Separator();
 
-      expect(() => separator.extract('1//\\n2')).toThrowError();
+      expect(() => separator.extract('1//\\n2')).toThrowError(
+        '[ERROR] 커스텀 구분자가 비어있습니다.',
+      );
+    });
+
+    it('커스텀 구분자로 숫자를 입력할 경우, 예외처리 한다.', () => {
+      const separator = new Separator();
+
+      expect(() => separator.extract('1//1\\n2')).toThrowError(
+        '[ERROR] 커스텀 구분자로 숫자를 입력할 수 없습니다.',
+      );
     });
   });
 
