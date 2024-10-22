@@ -11,12 +11,28 @@ class App {
 
   async run() {
     const userInput = await this.#readUserInput(MESSAGE.READ_USER_INPUT);
-    const separators = this.#separator.extract(userInput);
+    this.#separator.extract(userInput);
     const splitedInput = this.#separator.split(userInput);
+    const parsedInput = this.#parseNumbers(splitedInput);
   }
 
   async #readUserInput(message) {
     return await Console.readLineAsync(message);
+  }
+
+  #parseNumbers(array) {
+    return array.map((value) => {
+      if (this.#separator.contain(value)) {
+        return value;
+      }
+
+      const number = Number(value);
+      if (Number.isNaN(number)) {
+        throw new Error('[ERROR] 숫자가 아닌 값이 포함되어 있습니다.');
+      }
+
+      return number;
+    });
   }
 }
 
