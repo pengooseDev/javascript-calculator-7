@@ -1,15 +1,17 @@
 import { Console } from '@woowacourse/mission-utils';
+import { Separator } from './models/Separator.js';
 
 const MESSAGE = Object.freeze({
   READ_USER_INPUT: '덧셈할 문자열을 입력해 주세요.',
 });
-const SEPARATORS = [',', ':'];
+const DEFAULT_SEPARATORS = Object.freeze([',', ':']);
 
 class App {
-  #separators = [];
+  #separator = new Separator(DEFAULT_SEPARATORS);
 
   async run() {
     const userInput = await this.#readUserInput(MESSAGE.READ_USER_INPUT);
+    const separators = this.#separator.extract(userInput);
   }
 
   async #readUserInput(message) {
